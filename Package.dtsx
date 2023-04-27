@@ -1,0 +1,1075 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/8/2022 4:36:28 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="AVIWE"
+  DTS:CreatorName="AVIWE\lavan"
+  DTS:DTSID="{BC66E881-A022-47EA-A97B-996C72285191}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.948.0"
+  DTS:LocaleID="7177"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="58"
+  DTS:VersionGUID="{944F74F7-52A6-47DD-AB56-3E6005F95960}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LAVANI\MSSQLSERVER01.AdventureWorks2019]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{9E57B045-E4E5-4502-970C-639F03F27149}"
+      DTS:ObjectName="LAVANI\MSSQLSERVER01.AdventureWorks2019">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=LAVANI\MSSQLSERVER01;Initial Catalog=AdventureWorks2019;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package-{9E57B045-E4E5-4502-970C-639F03F27149}LAVANI\MSSQLSERVER01.AdventureWorks2019;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LAVANI\MSSQLSERVER01.Inc_Staging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{FCB2398B-5E75-4981-8153-EA434B200462}"
+      DTS:ObjectName="LAVANI\MSSQLSERVER01.Inc_Staging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=LAVANI\MSSQLSERVER01;Initial Catalog=Inc_Staging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package-{FCB2398B-5E75-4981-8153-EA434B200462}LAVANI\MSSQLSERVER01.Inc_Staging;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9B0D2629-09A2-483B-A43F-49D1FCDCACE4}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="CountInsertedRecords">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E743A524-25AF-40EB-A695-73D50F53DC21}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="CountUpdatedRecords">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BACA00F3-6C2C-4AE2-89FA-29D3B207FE95}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Currency_lastupdate">
+      <DTS:VariableValue
+        DTS:DataType="7">11/8/2022 4:43:42 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CCDB8025-4AD6-43D5-9D7D-1C2231FC084E}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;SELECT [CurrencyCode] ,[Name],[ModifiedDate] FROM [AdventureWorks2019].[Sales].[Currency] WHERE [ModifiedDate] &gt; '&quot;+(DT_WSTR,50) @[User::Currency_lastupdate] +&quot;' ORDER BY  [CurrencyCode];&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="sqlCommand">
+      <DTS:VariableValue
+        DTS:DataType="8">SELECT [CurrencyCode] ,[Name],[ModifiedDate] FROM [AdventureWorks2019].[Sales].[Currency] WHERE [ModifiedDate] &gt; '2022/11/08 16:43:42' ORDER BY  [CurrencyCode];</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DimCurrency"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{92A24CA6-76F1-4D0A-B2A3-F3AB9505692C}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DimCurrency">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\DimCurrency\Get Maximum Last modified Date from Destination"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{F0F7E9C2-BB20-476C-AE75-9A9C86D7170F}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Get Maximum Last modified Date from Destination"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022 CTP2.0; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FCB2398B-5E75-4981-8153-EA434B200462}"
+              SQLTask:SqlStatementSource="select max([ModifiedDate]) as LastUpdate from [Inc_Staging].[dbo].[DimCurrency]"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="LastUpdate"
+                SQLTask:DtsVariableName="User::Currency_lastupdate" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\DimCurrency\Increment dimCurrency"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{890C6C37-CA5B-4BBB-BFFF-4BD1A77846A8}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Increment dimCurrency"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated column In Destination"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Add Last Date Updated column In Destination"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated column In Destination.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated column In Destination.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated column In Destination.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated column In Destination.Outputs[Derived Column Output].Columns[Last_Updated]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated column In Destination.Outputs[Derived Column Output].Columns[Last_Updated]"
+                          name="Last_Updated"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[GETDATE]()</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">GETDATE()</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated column In Destination.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated column In Destination.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated column In Destination.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated column In Destination.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated column In Destination.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated column In Destination.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\DimCurrency\Increment dimCurrency\Classify Change"
+                  componentClassID="Microsoft.Lookup"
+                  contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+                  description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+                  name="Classify Change"
+                  usesDispositions="true"
+                  version="6">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement that generates the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT        CurrencyCode
+FROM            DimCurrency</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommandParam"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT        CurrencyCode
+FROM            DimCurrency) [refTable]
+where [refTable].[CurrencyCode] = ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the type of connection used to access the reference dataset."
+                      name="ConnectionType"
+                      typeConverter="LookupConnectionType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the cache type of the lookup table."
+                      name="CacheType"
+                      typeConverter="CacheType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                      name="NoMatchBehavior"
+                      typeConverter="LookupNoMatchBehavior">1</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                      name="NoMatchCachePercentage">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                      name="MaxMemoryUsage">25</property>
+                    <property
+                      dataType="System.Int64"
+                      description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                      name="MaxMemoryUsage64">25</property>
+                    <property
+                      dataType="System.String"
+                      description="Indicates whether to reference metadata in an XML format."
+                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="CurrencyCode" dataType="DT_WSTR" length="3" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                      name="ParameterMap">#{Package\DimCurrency\Increment dimCurrency\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrencyCode]};</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                      name="TreatDuplicateKeysAsError">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\DimCurrency\Increment dimCurrency\Classify Change.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LAVANI\MSSQLSERVER01.Inc_Staging]"
+                      connectionManagerRefId="Package.ConnectionManagers[LAVANI\MSSQLSERVER01.Inc_Staging]"
+                      description="Connection manager used to access lookup data."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\DimCurrency\Increment dimCurrency\Classify Change.Inputs[Lookup Input]"
+                      name="Lookup Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\Classify Change.Inputs[Lookup Input].Columns[CurrencyCode]"
+                          cachedDataType="wstr"
+                          cachedLength="3"
+                          cachedName="CurrencyCode"
+                          lineageId="Package\DimCurrency\Increment dimCurrency\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrencyCode]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table that a column joins."
+                              name="JoinToReferenceColumn">CurrencyCode</property>
+                            <property
+                              dataType="System.Null"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\DimCurrency\Increment dimCurrency\Classify Change.Outputs[Lookup Match Output]"
+                      errorOrTruncationOperation="Lookup"
+                      exclusionGroup="1"
+                      name="Lookup Match Output"
+                      synchronousInputId="Package\DimCurrency\Increment dimCurrency\Classify Change.Inputs[Lookup Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\DimCurrency\Increment dimCurrency\Classify Change.Outputs[Lookup No Match Output]"
+                      description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                      exclusionGroup="1"
+                      name="Lookup No Match Output"
+                      synchronousInputId="Package\DimCurrency\Increment dimCurrency\Classify Change.Inputs[Lookup Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\DimCurrency\Increment dimCurrency\Classify Change.Outputs[Lookup Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Lookup Error Output"
+                      synchronousInputId="Package\DimCurrency\Increment dimCurrency\Classify Change.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\Classify Change.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\DimCurrency\Increment dimCurrency\Classify Change.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\Classify Change.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\DimCurrency\Increment dimCurrency\Classify Change.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\DimCurrency\Increment dimCurrency\Insert new records in dimCurrency"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Insert new records in dimCurrency"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[DimCurrency]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\DimCurrency\Increment dimCurrency\Insert new records in dimCurrency.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LAVANI\MSSQLSERVER01.Inc_Staging]"
+                      connectionManagerRefId="Package.ConnectionManagers[LAVANI\MSSQLSERVER01.Inc_Staging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\DimCurrency\Increment dimCurrency\Insert new records in dimCurrency.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\Insert new records in dimCurrency.Inputs[OLE DB Destination Input].Columns[ModifiedDate]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="ModifiedDate"
+                          externalMetadataColumnId="Package\DimCurrency\Increment dimCurrency\Insert new records in dimCurrency.Inputs[OLE DB Destination Input].ExternalColumns[ModifiedDate]"
+                          lineageId="Package\DimCurrency\Increment dimCurrency\OLE DB Source.Outputs[OLE DB Source Output].Columns[ModifiedDate]" />
+                        <inputColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\Insert new records in dimCurrency.Inputs[OLE DB Destination Input].Columns[CurrencyCode]"
+                          cachedDataType="wstr"
+                          cachedLength="3"
+                          cachedName="CurrencyCode"
+                          externalMetadataColumnId="Package\DimCurrency\Increment dimCurrency\Insert new records in dimCurrency.Inputs[OLE DB Destination Input].ExternalColumns[CurrencyCode]"
+                          lineageId="Package\DimCurrency\Increment dimCurrency\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrencyCode]" />
+                        <inputColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\Insert new records in dimCurrency.Inputs[OLE DB Destination Input].Columns[Name]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Name"
+                          externalMetadataColumnId="Package\DimCurrency\Increment dimCurrency\Insert new records in dimCurrency.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                          lineageId="Package\DimCurrency\Increment dimCurrency\OLE DB Source.Outputs[OLE DB Source Output].Columns[Name]" />
+                        <inputColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\Insert new records in dimCurrency.Inputs[OLE DB Destination Input].Columns[Last_Updated]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="Last_Updated"
+                          externalMetadataColumnId="Package\DimCurrency\Increment dimCurrency\Insert new records in dimCurrency.Inputs[OLE DB Destination Input].ExternalColumns[DateUpdated]"
+                          lineageId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated column In Destination.Outputs[Derived Column Output].Columns[Last_Updated]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\Insert new records in dimCurrency.Inputs[OLE DB Destination Input].ExternalColumns[ModifiedDate]"
+                          dataType="dbTimeStamp"
+                          name="ModifiedDate" />
+                        <externalMetadataColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\Insert new records in dimCurrency.Inputs[OLE DB Destination Input].ExternalColumns[CurrencyCode]"
+                          dataType="wstr"
+                          length="3"
+                          name="CurrencyCode" />
+                        <externalMetadataColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\Insert new records in dimCurrency.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                          dataType="wstr"
+                          length="50"
+                          name="Name" />
+                        <externalMetadataColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\Insert new records in dimCurrency.Inputs[OLE DB Destination Input].ExternalColumns[DateUpdated]"
+                          dataType="dbTimeStamp"
+                          name="DateUpdated" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\DimCurrency\Increment dimCurrency\Insert new records in dimCurrency.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\DimCurrency\Increment dimCurrency\Insert new records in dimCurrency.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\Insert new records in dimCurrency.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\DimCurrency\Increment dimCurrency\Insert new records in dimCurrency.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\Insert new records in dimCurrency.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\DimCurrency\Increment dimCurrency\Insert new records in dimCurrency.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\DimCurrency\Increment dimCurrency\OLE DB Source"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLE DB Source"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable">User::sqlCommand</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\DimCurrency\Increment dimCurrency\OLE DB Source.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LAVANI\MSSQLSERVER01.AdventureWorks2019]"
+                      connectionManagerRefId="Package.ConnectionManagers[LAVANI\MSSQLSERVER01.AdventureWorks2019]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\DimCurrency\Increment dimCurrency\OLE DB Source.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrencyCode]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\DimCurrency\Increment dimCurrency\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CurrencyCode]"
+                          length="3"
+                          lineageId="Package\DimCurrency\Increment dimCurrency\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrencyCode]"
+                          name="CurrencyCode"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\OLE DB Source.Outputs[OLE DB Source Output].Columns[Name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\DimCurrency\Increment dimCurrency\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          length="50"
+                          lineageId="Package\DimCurrency\Increment dimCurrency\OLE DB Source.Outputs[OLE DB Source Output].Columns[Name]"
+                          name="Name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\OLE DB Source.Outputs[OLE DB Source Output].Columns[ModifiedDate]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\DimCurrency\Increment dimCurrency\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ModifiedDate]"
+                          lineageId="Package\DimCurrency\Increment dimCurrency\OLE DB Source.Outputs[OLE DB Source Output].Columns[ModifiedDate]"
+                          name="ModifiedDate"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CurrencyCode]"
+                          dataType="wstr"
+                          length="3"
+                          name="CurrencyCode" />
+                        <externalMetadataColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          dataType="wstr"
+                          length="50"
+                          name="Name" />
+                        <externalMetadataColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ModifiedDate]"
+                          dataType="dbTimeStamp"
+                          name="ModifiedDate" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\DimCurrency\Increment dimCurrency\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CurrencyCode]"
+                          dataType="wstr"
+                          length="3"
+                          lineageId="Package\DimCurrency\Increment dimCurrency\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CurrencyCode]"
+                          name="CurrencyCode" />
+                        <outputColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\DimCurrency\Increment dimCurrency\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          name="Name" />
+                        <outputColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ModifiedDate]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\DimCurrency\Increment dimCurrency\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ModifiedDate]"
+                          name="ModifiedDate" />
+                        <outputColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\DimCurrency\Increment dimCurrency\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\DimCurrency\Increment dimCurrency\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\DimCurrency\Increment dimCurrency\Update DimCurrency"
+                  componentClassID="Microsoft.OLEDBCommand"
+                  contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+                  description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+                  name="Update DimCurrency"
+                  usesDispositions="true"
+                  version="2">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [Inc_Staging].[dbo].[DimCurrency]
+SET [Name]=?,[ModifiedDate]=?,[DateUpdated]=?
+WHERE  [CurrencyCode]=?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\DimCurrency\Increment dimCurrency\Update DimCurrency.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LAVANI\MSSQLSERVER01.Inc_Staging]"
+                      connectionManagerRefId="Package.ConnectionManagers[LAVANI\MSSQLSERVER01.Inc_Staging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\DimCurrency\Increment dimCurrency\Update DimCurrency.Inputs[OLE DB Command Input]"
+                      errorOrTruncationOperation="Command Execution"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Command Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\Update DimCurrency.Inputs[OLE DB Command Input].Columns[Name]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Name"
+                          externalMetadataColumnId="Package\DimCurrency\Increment dimCurrency\Update DimCurrency.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          lineageId="Package\DimCurrency\Increment dimCurrency\OLE DB Source.Outputs[OLE DB Source Output].Columns[Name]" />
+                        <inputColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\Update DimCurrency.Inputs[OLE DB Command Input].Columns[ModifiedDate]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="ModifiedDate"
+                          externalMetadataColumnId="Package\DimCurrency\Increment dimCurrency\Update DimCurrency.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                          lineageId="Package\DimCurrency\Increment dimCurrency\OLE DB Source.Outputs[OLE DB Source Output].Columns[ModifiedDate]" />
+                        <inputColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\Update DimCurrency.Inputs[OLE DB Command Input].Columns[Last_Updated]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="Last_Updated"
+                          externalMetadataColumnId="Package\DimCurrency\Increment dimCurrency\Update DimCurrency.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                          lineageId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated column In Destination.Outputs[Derived Column Output].Columns[Last_Updated]" />
+                        <inputColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\Update DimCurrency.Inputs[OLE DB Command Input].Columns[CurrencyCode]"
+                          cachedDataType="wstr"
+                          cachedLength="3"
+                          cachedName="CurrencyCode"
+                          externalMetadataColumnId="Package\DimCurrency\Increment dimCurrency\Update DimCurrency.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                          lineageId="Package\DimCurrency\Increment dimCurrency\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrencyCode]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\Update DimCurrency.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          dataType="wstr"
+                          length="50"
+                          name="Param_0">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">65</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\Update DimCurrency.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                          dataType="dbTimeStamp"
+                          name="Param_1">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">65</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\Update DimCurrency.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                          dataType="dbTimeStamp"
+                          name="Param_2">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">65</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\Update DimCurrency.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                          dataType="wstr"
+                          length="3"
+                          name="Param_3">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">65</property>
+                          </properties>
+                        </externalMetadataColumn>
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\DimCurrency\Increment dimCurrency\Update DimCurrency.Outputs[OLE DB Command Output]"
+                      exclusionGroup="1"
+                      name="OLE DB Command Output"
+                      synchronousInputId="Package\DimCurrency\Increment dimCurrency\Update DimCurrency.Inputs[OLE DB Command Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\DimCurrency\Increment dimCurrency\Update DimCurrency.Outputs[OLE DB Command Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Command Error Output"
+                      synchronousInputId="Package\DimCurrency\Increment dimCurrency\Update DimCurrency.Inputs[OLE DB Command Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\Update DimCurrency.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\DimCurrency\Increment dimCurrency\Update DimCurrency.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\DimCurrency\Increment dimCurrency\Update DimCurrency.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\DimCurrency\Increment dimCurrency\Update DimCurrency.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\DimCurrency\Increment dimCurrency.Paths[Derived Column Output]"
+                  endId="Package\DimCurrency\Increment dimCurrency\Classify Change.Inputs[Lookup Input]"
+                  name="Derived Column Output"
+                  startId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated column In Destination.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\DimCurrency\Increment dimCurrency.Paths[Lookup Match Output]"
+                  endId="Package\DimCurrency\Increment dimCurrency\Update DimCurrency.Inputs[OLE DB Command Input]"
+                  name="Lookup Match Output"
+                  startId="Package\DimCurrency\Increment dimCurrency\Classify Change.Outputs[Lookup Match Output]" />
+                <path
+                  refId="Package\DimCurrency\Increment dimCurrency.Paths[Lookup No Match Output]"
+                  endId="Package\DimCurrency\Increment dimCurrency\Insert new records in dimCurrency.Inputs[OLE DB Destination Input]"
+                  name="Lookup No Match Output"
+                  startId="Package\DimCurrency\Increment dimCurrency\Classify Change.Outputs[Lookup No Match Output]" />
+                <path
+                  refId="Package\DimCurrency\Increment dimCurrency.Paths[OLE DB Source Output]"
+                  endId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated column In Destination.Inputs[Derived Column Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\DimCurrency\Increment dimCurrency\OLE DB Source.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\DimCurrency.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{0C123125-6235-48CC-A198-02BFAA91E08B}"
+          DTS:From="Package\DimCurrency\Get Maximum Last modified Date from Destination"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\DimCurrency\Increment dimCurrency" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="325,42"
+          Id="Package\DimCurrency\Get Maximum Last modified Date from Destination"
+          TopLeft="19,8" />
+        <NodeLayout
+          Size="193,42"
+          Id="Package\DimCurrency\Increment dimCurrency"
+          TopLeft="83,212" />
+        <EdgeLayout
+          Id="Package\DimCurrency.PrecedenceConstraints[Constraint]"
+          TopLeft="180.5,50">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,162"
+              Start="0,0"
+              End="0,154.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,154.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="350,291"
+          Size="350,334"
+          Id="Package\DimCurrency"
+          TopLeft="74.5,35" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DimCurrency\Increment dimCurrency">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="182,42"
+          Id="Package\DimCurrency\Increment dimCurrency\Update DimCurrency"
+          TopLeft="49,368" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package\DimCurrency\Increment dimCurrency\Classify Change"
+          TopLeft="181,250" />
+        <NodeLayout
+          Size="157,42"
+          Id="Package\DimCurrency\Increment dimCurrency\OLE DB Source"
+          TopLeft="180,16" />
+        <NodeLayout
+          Size="302,42"
+          Id="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated column In Destination"
+          TopLeft="115,108" />
+        <NodeLayout
+          Size="246,42"
+          Id="Package\DimCurrency\Increment dimCurrency\Insert new records in dimCurrency"
+          TopLeft="305,385" />
+        <EdgeLayout
+          Id="Package\DimCurrency\Increment dimCurrency.Paths[OLE DB Source Output]"
+          TopLeft="262.25,58">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,50"
+              Start="0,0"
+              End="0,42.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DimCurrency\Increment dimCurrency.Paths[Lookup No Match Output]"
+          TopLeft="285.666666666667,292">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="142.333333333333,93"
+              Start="0,0"
+              End="142.333333333333,85.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.7559153175592" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33.7559153175592"
+                    Point2="0,37.7559153175592"
+                    Point3="4,37.7559153175592" />
+                  <mssgle:LineSegment
+                    End="138.333333333333,37.7559153175592" />
+                  <mssgle:CubicBezierSegment
+                    Point1="138.333333333333,37.7559153175592"
+                    Point2="142.333333333333,37.7559153175592"
+                    Point3="142.333333333333,41.7559153175592" />
+                  <mssgle:LineSegment
+                    End="142.333333333333,85.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="15.3602799479165,42.7559153175592,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DimCurrency\Increment dimCurrency.Paths[Lookup Match Output]"
+          TopLeft="260.5,292">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-120.5,76"
+              Start="0,0"
+              End="-120.5,68.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,34"
+                    Point2="0,38"
+                    Point3="-4,38" />
+                  <mssgle:LineSegment
+                    End="-116.5,38" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-116.5,38"
+                    Point2="-120.5,38"
+                    Point3="-120.5,42" />
+                  <mssgle:LineSegment
+                    End="-120.5,68.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-108.44138671875,43,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DimCurrency\Increment dimCurrency.Paths[Derived Column Output]"
+          TopLeft="263.25,150">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,100"
+              Start="0,0"
+              End="0,92.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,92.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimCurrency\Increment dimCurrency\Insert new records in dimCurrency">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimCurrency\Increment dimCurrency\Classify Change">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimCurrency\Increment dimCurrency\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
