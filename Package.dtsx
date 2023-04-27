@@ -11,8 +11,8 @@
   DTS:LocaleID="7177"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="58"
-  DTS:VersionGUID="{944F74F7-52A6-47DD-AB56-3E6005F95960}">
+  DTS:VersionBuild="59"
+  DTS:VersionGUID="{0EDF2359-880F-4284-AE2C-FA883FE1F6FC}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -129,15 +129,15 @@
               version="1">
               <components>
                 <component
-                  refId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated column In Destination"
+                  refId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated Column In Destination"
                   componentClassID="Microsoft.DerivedColumn"
                   contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
                   description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
-                  name="Add Last Date Updated column In Destination"
+                  name="Add Last Date Updated Column In Destination"
                   usesDispositions="true">
                   <inputs>
                     <input
-                      refId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated column In Destination.Inputs[Derived Column Input]"
+                      refId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated Column In Destination.Inputs[Derived Column Input]"
                       description="Input to the Derived Column Transformation"
                       name="Derived Column Input">
                       <externalMetadataColumns />
@@ -145,18 +145,18 @@
                   </inputs>
                   <outputs>
                     <output
-                      refId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated column In Destination.Outputs[Derived Column Output]"
+                      refId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated Column In Destination.Outputs[Derived Column Output]"
                       description="Default Output of the Derived Column Transformation"
                       exclusionGroup="1"
                       name="Derived Column Output"
-                      synchronousInputId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated column In Destination.Inputs[Derived Column Input]">
+                      synchronousInputId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated Column In Destination.Inputs[Derived Column Input]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated column In Destination.Outputs[Derived Column Output].Columns[Last_Updated]"
+                          refId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated Column In Destination.Outputs[Derived Column Output].Columns[Last_Updated]"
                           dataType="dbTimeStamp"
                           errorOrTruncationOperation="Computation"
                           errorRowDisposition="FailComponent"
-                          lineageId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated column In Destination.Outputs[Derived Column Output].Columns[Last_Updated]"
+                          lineageId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated Column In Destination.Outputs[Derived Column Output].Columns[Last_Updated]"
                           name="Last_Updated"
                           truncationRowDisposition="FailComponent">
                           <properties>
@@ -177,23 +177,23 @@
                       <externalMetadataColumns />
                     </output>
                     <output
-                      refId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated column In Destination.Outputs[Derived Column Error Output]"
+                      refId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated Column In Destination.Outputs[Derived Column Error Output]"
                       description="Error Output of the Derived Column Transformation"
                       exclusionGroup="1"
                       isErrorOut="true"
                       name="Derived Column Error Output"
-                      synchronousInputId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated column In Destination.Inputs[Derived Column Input]">
+                      synchronousInputId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated Column In Destination.Inputs[Derived Column Input]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated column In Destination.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          refId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated Column In Destination.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                           dataType="i4"
-                          lineageId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated column In Destination.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          lineageId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated Column In Destination.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                           name="ErrorCode"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated column In Destination.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          refId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated Column In Destination.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                           dataType="i4"
-                          lineageId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated column In Destination.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          lineageId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated Column In Destination.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -442,7 +442,7 @@ where [refTable].[CurrencyCode] = ?</property>
                           cachedDataType="dbTimeStamp"
                           cachedName="Last_Updated"
                           externalMetadataColumnId="Package\DimCurrency\Increment dimCurrency\Insert new records in dimCurrency.Inputs[OLE DB Destination Input].ExternalColumns[DateUpdated]"
-                          lineageId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated column In Destination.Outputs[Derived Column Output].Columns[Last_Updated]" />
+                          lineageId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated Column In Destination.Outputs[Derived Column Output].Columns[Last_Updated]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
@@ -700,7 +700,7 @@ WHERE  [CurrencyCode]=?</property>
                           cachedDataType="dbTimeStamp"
                           cachedName="Last_Updated"
                           externalMetadataColumnId="Package\DimCurrency\Increment dimCurrency\Update DimCurrency.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
-                          lineageId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated column In Destination.Outputs[Derived Column Output].Columns[Last_Updated]" />
+                          lineageId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated Column In Destination.Outputs[Derived Column Output].Columns[Last_Updated]" />
                         <inputColumn
                           refId="Package\DimCurrency\Increment dimCurrency\Update DimCurrency.Inputs[OLE DB Command Input].Columns[CurrencyCode]"
                           cachedDataType="wstr"
@@ -798,7 +798,7 @@ WHERE  [CurrencyCode]=?</property>
                   refId="Package\DimCurrency\Increment dimCurrency.Paths[Derived Column Output]"
                   endId="Package\DimCurrency\Increment dimCurrency\Classify Change.Inputs[Lookup Input]"
                   name="Derived Column Output"
-                  startId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated column In Destination.Outputs[Derived Column Output]" />
+                  startId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated Column In Destination.Outputs[Derived Column Output]" />
                 <path
                   refId="Package\DimCurrency\Increment dimCurrency.Paths[Lookup Match Output]"
                   endId="Package\DimCurrency\Increment dimCurrency\Update DimCurrency.Inputs[OLE DB Command Input]"
@@ -811,7 +811,7 @@ WHERE  [CurrencyCode]=?</property>
                   startId="Package\DimCurrency\Increment dimCurrency\Classify Change.Outputs[Lookup No Match Output]" />
                 <path
                   refId="Package\DimCurrency\Increment dimCurrency.Paths[OLE DB Source Output]"
-                  endId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated column In Destination.Inputs[Derived Column Input]"
+                  endId="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated Column In Destination.Inputs[Derived Column Input]"
                   name="OLE DB Source Output"
                   startId="Package\DimCurrency\Increment dimCurrency\OLE DB Source.Outputs[OLE DB Source Output]" />
               </paths>
@@ -901,8 +901,8 @@ WHERE  [CurrencyCode]=?</property>
           Id="Package\DimCurrency\Increment dimCurrency\OLE DB Source"
           TopLeft="180,16" />
         <NodeLayout
-          Size="302,42"
-          Id="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated column In Destination"
+          Size="304,42"
+          Id="Package\DimCurrency\Increment dimCurrency\Add Last Date Updated Column In Destination"
           TopLeft="115,108" />
         <NodeLayout
           Size="246,42"
@@ -910,18 +910,30 @@ WHERE  [CurrencyCode]=?</property>
           TopLeft="305,385" />
         <EdgeLayout
           Id="Package\DimCurrency\Increment dimCurrency.Paths[OLE DB Source Output]"
-          TopLeft="262.25,58">
+          TopLeft="258.5,58">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,50"
+              EndConnector="8.5,50"
               Start="0,0"
-              End="0,42.5">
+              End="8.5,42.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,42.5" />
+                    End="0,21" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21"
+                    Point2="0,25"
+                    Point3="4,25" />
+                  <mssgle:LineSegment
+                    End="4.5,25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="4.5,25"
+                    Point2="8.5,25"
+                    Point3="8.5,29" />
+                  <mssgle:LineSegment
+                    End="8.5,42.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1004,7 +1016,7 @@ WHERE  [CurrencyCode]=?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DimCurrency\Increment dimCurrency.Paths[Derived Column Output]"
-          TopLeft="263.25,150">
+          TopLeft="263.75,150">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1046,7 +1058,7 @@ WHERE  [CurrencyCode]=?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -1056,7 +1068,7 @@ WHERE  [CurrencyCode]=?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
