@@ -28,7 +28,7 @@ For example: see the sample of the source table from OLTP AdaventureWords2019.bc
 
 1. Name = Currency_LastUpdate , datatype = Datetime
 
-This will store the value returned from the target (on the result set section set LastUpdate = User::Currency_lastudate)
+This will store the value returned from the target (In the result set section set LastUpdate = User::Currency_lastudate)
 
 SQLStatement = select max([ModifiedDate]) as LastUpdate from [Inc_Staging].[dbo].[DimCurrency]
 
@@ -40,6 +40,10 @@ SQLStatement = select max([ModifiedDate]) as LastUpdate from [Inc_Staging].[dbo]
 ![image](https://user-images.githubusercontent.com/114147734/235266436-74d941a1-65b8-45d8-93c5-e3edbb06a770.png)
 
 This variable will filter records from the source where the ModifiedDate > Currency_lastupdate variable
+
+
+
+
 
 
 
