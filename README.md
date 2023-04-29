@@ -1,7 +1,7 @@
 # Delta_ModifiedDate
 ## Incremental load SSIS package using DateTime columns
 
-This method is mainly used to do ETL when the source table has LastChangedDate,LastUpdate,LastModifiedDate or Modified, and any column which refers to the date which the source was added new records and old records were updated.  
+This method is mainly used to do ETL when the source table has column like LastChangedDate,LastUpdate,LastModifiedDate or Modified, and any column which refers to the date which the source was added new records and old records were updated.  
 
 For example: see the sample of the source table from OLTP AdaventureWords2019.bck (https://learn.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver16&tabs=ssms)
 
@@ -19,7 +19,7 @@ For example: see the sample of the source table from OLTP AdaventureWords2019.bc
 
 ## Step 1: Create two OLE DB connection managers
 
--Configure the source and target datasets accordingly
+- Configure the source and target datasets accordingly
 
 ## Step 2: Create variables
 
@@ -45,14 +45,14 @@ This variable will filter records from the source where the ModifiedDate > Curre
 
 ## Step 3: Add Derived column 
 
-DateUpdated column only exist in the target dataset, therefore, we shall add a derived column as Last_Updated in the Transformation part to track all the current changes from the source and use it to populate DateUpdated column in the target dataset where records have changed respectively.
+DateUpdated column only exist in the target dataset, therefore, we shall add a derived column as Last_Updated in the transformation part to track all the current changes from the source and use it to populate DateUpdated column in the target dataset where records have changed, respectively.
 
 ![image](https://user-images.githubusercontent.com/114147734/235269846-32f7cf95-5e10-45f4-919d-66e2024738b7.png)
 
 
 ## Step 4: Classify the change
 
-- Use LOOKUP Transformation to classify the change ( In General section select: Full cache >>>OLE DB connection manager >>> Redirect rows tono match output)
+- Use LOOKUP Transformation to classify the change ( In General section select: Full cache >>>OLE DB connection manager >>> Redirect rows to no match output)
 - Connection as shown in the picture below
 
 ![image](https://user-images.githubusercontent.com/114147734/235288624-4556bfcd-c25b-4951-a81b-f48a27cfa243.png)
@@ -66,7 +66,7 @@ DateUpdated column only exist in the target dataset, therefore, we shall add a d
 
 ![image](https://user-images.githubusercontent.com/114147734/235271439-a0dd8387-7e82-4eae-816d-15352e322a32.png)
 
-### Note: Mapping source to targrt is a must (see the below picture)
+### Note: Mapping source to target is a must (see the below picture)
 
 ![image](https://user-images.githubusercontent.com/114147734/235271644-60519f64-7911-43c6-a8d5-521f708e9b60.png)
 
@@ -76,7 +76,7 @@ DateUpdated column only exist in the target dataset, therefore, we shall add a d
 
 ![image](https://user-images.githubusercontent.com/114147734/235288938-6d8e62d0-4f2c-434e-ae0d-6010619aca0e.png)
 
-### Note: Mapping source to targrt is a must (see the below picture)
+### Note: Mapping source to target is a must (see the below picture)
 
 ![image](https://user-images.githubusercontent.com/114147734/235288996-810a5027-03c9-47ab-a803-459393644626.png)
 
@@ -84,7 +84,7 @@ And set Error Output as Fail component
 
 ## Make Changes in the Source
 
-1. In this case, i am going to INSERT new 11 records in the source which have 105 rows (see the Source (Currency) section as mentioned above)
+1. In this case, i am going to INSERT new 11 records in the source which have 105 rows (see the Source (Currency) section as mentioned above), then the number of records will add upto 116
 
 ![image](https://user-images.githubusercontent.com/114147734/235294216-e980e3f4-41f0-4a6b-8155-8d20d767106b.png)
 
@@ -103,6 +103,10 @@ And set Error Output as Fail component
 
 2. Data Flow
 
+There are 13 changes from the source which will be pushed to the target. This splits as follows:
+- 11 Insterd >>> Lookup No Match Output
+- 2 Updated >>> Look Match Output
+
 ![image](https://user-images.githubusercontent.com/114147734/235295824-473c9988-1b67-4416-bdfb-db2a3b831efb.png)
 
 3. Check if new records are INSERTED (The number of rows will be now 116 in the Source and tagert)
@@ -115,7 +119,7 @@ And set Error Output as Fail component
 
 ![image](https://user-images.githubusercontent.com/114147734/235296507-d98b91ae-ce17-4235-8195-07ec66cb31a5.png)
 
-## Note:Checking Update and inserted records in the target dataset can also be done by logging results
+## Note: Checking Update and inserted records in the target dataset can also be done by logging results
 
 # All good!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
