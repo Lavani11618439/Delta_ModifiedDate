@@ -41,6 +41,34 @@ SQLStatement = select max([ModifiedDate]) as LastUpdate from [Inc_Staging].[dbo]
 
 This variable will filter records from the source where the ModifiedDate > Currency_lastupdate variable
 
+![image](https://user-images.githubusercontent.com/114147734/235269722-6b6295e8-8f8d-455f-ab26-facddf6a2e1e.png)
+
+## Step 3: Add Derived column 
+
+DateUpdated column only exist in the target dataset, therefore, we shall add a derived column as Last_Updated in the Transformation part to track all the current changes from the source and use it to populate DateUpdated column in the target dataset where records have changed respectively.
+
+![image](https://user-images.githubusercontent.com/114147734/235269846-32f7cf95-5e10-45f4-919d-66e2024738b7.png)
+
+
+## Step 4: Classify the change
+
+- Use LOOKUP Transformation to classify the change >>>Fu
+- 
+
+
+1. Records with Lookup Match Output will be updated in the target
+
+
+![image](https://user-images.githubusercontent.com/114147734/235271439-a0dd8387-7e82-4eae-816d-15352e322a32.png)
+
+2. New records with Lookup No Match Output will be inserted into target
+
+
+Note: Mapping sorce to targrt is a must (see the below picture)
+
+![image](https://user-images.githubusercontent.com/114147734/235271644-60519f64-7911-43c6-a8d5-521f708e9b60.png)
+
+
 
 
 
