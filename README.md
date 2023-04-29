@@ -90,6 +90,38 @@ And set Error Output as Fail component
 
 2. UPDATE 2 records  in the source
 
+![image](https://user-images.githubusercontent.com/114147734/235295379-f3e39382-e1ab-4370-bc43-f59c36d799d5.png)
+
+
+## Execute the SSIS package to classify the change
+
+
+1. Control Flow
+
+![image](https://user-images.githubusercontent.com/114147734/235295746-5fdfcb97-d5a8-41f5-943b-dc13da5fc977.png)
+
+
+2. Data Flow
+
+![image](https://user-images.githubusercontent.com/114147734/235295824-473c9988-1b67-4416-bdfb-db2a3b831efb.png)
+
+3. Check if new records are INSERTED (The number of rows will be now 116 in the Source and tagert)
+
+![image](https://user-images.githubusercontent.com/114147734/235296165-2747f50b-648b-4838-8077-c1e0289a2288.png)
+
+![image](https://user-images.githubusercontent.com/114147734/235296259-b2bb6a1b-bc9c-44e7-b3f2-e399f9fcec9e.png)
+
+4. Look for the 2 updated records by selecting them from the  target
+
+![image](https://user-images.githubusercontent.com/114147734/235296507-d98b91ae-ce17-4235-8195-07ec66cb31a5.png)
+
+## Note:Checking Update and inserted records in the target dataset can also be done by logging results
+
+# All good!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
 
 
 
