@@ -66,7 +66,7 @@ DateUpdated column only exist in the target dataset, therefore, we shall add a d
 
 ![image](https://user-images.githubusercontent.com/114147734/235271439-a0dd8387-7e82-4eae-816d-15352e322a32.png)
 
-### Note: Mapping sorce to targrt is a must (see the below picture)
+### Note: Mapping source to targrt is a must (see the below picture)
 
 ![image](https://user-images.githubusercontent.com/114147734/235271644-60519f64-7911-43c6-a8d5-521f708e9b60.png)
 
@@ -76,11 +76,22 @@ DateUpdated column only exist in the target dataset, therefore, we shall add a d
 
 ![image](https://user-images.githubusercontent.com/114147734/235288938-6d8e62d0-4f2c-434e-ae0d-6010619aca0e.png)
 
-### Note: Mapping sorce to targrt is a must (see the below picture)
+### Note: Mapping source to targrt is a must (see the below picture)
 
 ![image](https://user-images.githubusercontent.com/114147734/235288996-810a5027-03c9-47ab-a803-459393644626.png)
 
 And set Error Output as Fail component
+
+## Make Changes in the Source
+
+1. In this case, i am going to INSERT new 11 records in the source which have 105 rows (see the Source (Currency) section as mentioned above)
+
+![image](https://user-images.githubusercontent.com/114147734/235294216-e980e3f4-41f0-4a6b-8155-8d20d767106b.png)
+
+2. UPDATE 2 records  in the source
+
+
+
 
 
 
