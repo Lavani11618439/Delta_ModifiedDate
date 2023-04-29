@@ -52,23 +52,35 @@ DateUpdated column only exist in the target dataset, therefore, we shall add a d
 
 ## Step 4: Classify the change
 
-- Use LOOKUP Transformation to classify the change >>>Fu
-- 
+- Use LOOKUP Transformation to classify the change ( In General section select: Full cache >>>OLE DB connection manager >>> Redirect rows tono match output)
+- Connection as shown in the picture below
+
+![image](https://user-images.githubusercontent.com/114147734/235288624-4556bfcd-c25b-4951-a81b-f48a27cfa243.png)
+
+- Column mapping as shown in the picture below
+
+![image](https://user-images.githubusercontent.com/114147734/235288724-26efdad9-ece8-4d23-ab91-b461c8efe153.png)
 
 
 1. Records with Lookup Match Output will be updated in the target
 
-
 ![image](https://user-images.githubusercontent.com/114147734/235271439-a0dd8387-7e82-4eae-816d-15352e322a32.png)
 
-2. New records with Lookup No Match Output will be inserted into target
-
-
-Note: Mapping sorce to targrt is a must (see the below picture)
+### Note: Mapping sorce to targrt is a must (see the below picture)
 
 ![image](https://user-images.githubusercontent.com/114147734/235271644-60519f64-7911-43c6-a8d5-521f708e9b60.png)
 
 
+
+2. New records with Lookup No Match Output will be inserted into target
+
+![image](https://user-images.githubusercontent.com/114147734/235288938-6d8e62d0-4f2c-434e-ae0d-6010619aca0e.png)
+
+### Note: Mapping sorce to targrt is a must (see the below picture)
+
+![image](https://user-images.githubusercontent.com/114147734/235288996-810a5027-03c9-47ab-a803-459393644626.png)
+
+And set Error Output as Fail component
 
 
 
