@@ -119,7 +119,7 @@ There are 13 changes from the source which will be pushed to the target. This sp
 
 ![image](https://user-images.githubusercontent.com/114147734/235296507-d98b91ae-ce17-4235-8195-07ec66cb31a5.png)
 
-## Note: Checking Update and inserted records in the target dataset can also be done by logging results
+## Note: Checking Updated and inserted records in the target dataset can also be done by logging results
 
 # All good!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
